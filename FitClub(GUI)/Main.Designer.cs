@@ -37,8 +37,8 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.listView2 = new System.Windows.Forms.ListView();
             this.button2 = new System.Windows.Forms.Button();
+            this.listView2 = new System.Windows.Forms.ListView();
             this.aktywnoscBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.groupBox1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -51,14 +51,14 @@
             // 
             this.label1.Location = new System.Drawing.Point(3, 16);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 13);
+            this.label1.Size = new System.Drawing.Size(120, 19);
             this.label1.TabIndex = 0;
-            this.label1.Text = "label1";
+            this.label1.Text = "Nazwa użytkownika";
             // 
             // ImieaktualnegoUser
             // 
             this.ImieaktualnegoUser.AutoSize = true;
-            this.ImieaktualnegoUser.Location = new System.Drawing.Point(90, 16);
+            this.ImieaktualnegoUser.Location = new System.Drawing.Point(142, 16);
             this.ImieaktualnegoUser.Name = "ImieaktualnegoUser";
             this.ImieaktualnegoUser.Size = new System.Drawing.Size(35, 13);
             this.ImieaktualnegoUser.TabIndex = 1;
@@ -141,16 +141,6 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Jedzenie";
             // 
-            // listView2
-            // 
-            this.listView2.HideSelection = false;
-            this.listView2.Location = new System.Drawing.Point(0, 19);
-            this.listView2.Name = "listView2";
-            this.listView2.Size = new System.Drawing.Size(317, 384);
-            this.listView2.TabIndex = 0;
-            this.listView2.UseCompatibleStateImageBehavior = false;
-            this.listView2.View = System.Windows.Forms.View.Details;
-            // 
             // button2
             // 
             this.button2.Location = new System.Drawing.Point(324, 20);
@@ -160,6 +150,16 @@
             this.button2.Text = "Dodaj";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // listView2
+            // 
+            this.listView2.HideSelection = false;
+            this.listView2.Location = new System.Drawing.Point(0, 19);
+            this.listView2.Name = "listView2";
+            this.listView2.Size = new System.Drawing.Size(317, 384);
+            this.listView2.TabIndex = 0;
+            this.listView2.UseCompatibleStateImageBehavior = false;
+            this.listView2.View = System.Windows.Forms.View.Details;
             // 
             // aktywnoscBindingSource
             // 
