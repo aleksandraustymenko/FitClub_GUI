@@ -51,14 +51,14 @@
             // 
             this.label1.Location = new System.Drawing.Point(3, 16);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(120, 19);
+            this.label1.Size = new System.Drawing.Size(99, 19);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Nazwa użytkownika";
+            this.label1.Text = "Imie użytkownika";
             // 
             // ImieaktualnegoUser
             // 
             this.ImieaktualnegoUser.AutoSize = true;
-            this.ImieaktualnegoUser.Location = new System.Drawing.Point(142, 16);
+            this.ImieaktualnegoUser.Location = new System.Drawing.Point(122, 16);
             this.ImieaktualnegoUser.Name = "ImieaktualnegoUser";
             this.ImieaktualnegoUser.Size = new System.Drawing.Size(35, 13);
             this.ImieaktualnegoUser.TabIndex = 1;
