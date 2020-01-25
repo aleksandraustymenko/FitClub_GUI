@@ -1,7 +1,7 @@
 Aplikacja konsolowa Fitclub
-
 Uruchomienie
-Proszę wejść w plik glówny(Program) i kompilować 
+Proszę zacząć kompilacje,wprowadzić imię i wciśnąć Ok
+
 
 Wskazówki
 -Działa na frameworku 4.7
