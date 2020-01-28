@@ -9,6 +9,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
+
 namespace FitClub_GUI_
 {
     public partial class Main : Form
@@ -39,24 +41,39 @@ namespace FitClub_GUI_
                 użytkownikController = new UżytkownikController("");
                 użytkownikController.OtrzymacUżytkownika();
             }
-            catch(ArgumentNullException e1)
+            catch (ArgumentNullException e1)
             {
                 NewUserForm NU = new NewUserForm();
                 NU.ShowDialog();
-                if(string.IsNullOrEmpty(NU.imie))
+                if (string.IsNullOrEmpty(NU.imie))
                 {
                     Application.Exit();
                     return;
                 }
-                użytkownikController = new UżytkownikController(NU.imie);
+                try
+                {
+                    użytkownikController = new UżytkownikController(NU.imie);
+                }
+                catch(IOException y)
+                {
+                    
+                    MessageBox.Show("Pliki programu otwarte w czyms innym.Zamknij tamtą aplikacje i uruchom program ponownie","Błąd otwarcia pliku",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                    Application.Exit();
+                    return;
+                }
 
                 użytkownikController.UstawNowegoUżytkownika("kobieta", DateTime.Now, 0.00, 0.00);
 
             }
-            catch(Exception ef)
+            catch (IOException io)
             {
-                MessageBox.Show("Skontaktuj się z autorem programu,jest nieprzewiedzane",ef.Message, MessageBoxButtons.OK);
-             //
+                MessageBox.Show("IO");
+            }
+
+            catch (Exception ef)
+            {
+                MessageBox.Show("Skontaktuj się z autorem programu,jest nieprzewiedzane", ef.Message, MessageBoxButtons.OK);
+                //
             }
 
             ImieaktualnegoUser.Text = użytkownikController.Aktualny.Imie;
@@ -88,7 +105,7 @@ namespace FitClub_GUI_
 
         private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
         {
-
+            // "" == null 
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -96,7 +113,11 @@ namespace FitClub_GUI_
             NewAktywnosc newAktywnosc = new NewAktywnosc();
             newAktywnosc.ShowDialog();
             Aktywnosc aktywnosc = new Aktywnosc(newAktywnosc.Nazwa,newAktywnosc.wartosc);
-            cwiczeniaControler.Dodaj(aktywnosc, DateTime.Now, DateTime.Now); ;
+            if(!string.IsNullOrEmpty(newAktywnosc.Nazwa))
+            {
+                cwiczeniaControler.Dodaj(aktywnosc, DateTime.Now, DateTime.Now);
+            }
+            
             RefreshListAktywnosc();
         }
         private void RefreshListAktywnosc()
@@ -124,17 +145,25 @@ namespace FitClub_GUI_
         }
         private void Main_FormClosing(object sender, FormClosingEventArgs e)
         {
+
             try
             {
-                użytkownikController.Zapisz();
+                if(użytkownikController!=null)
+                {
+                    użytkownikController.Zapisz();
+                } 
+                else
+                {
+                    MessageBox.Show("Program zostal zamknięty ,ponewaz nie podaleś imienia");
+                }
             }
-            catch (NullReferenceException)
+            catch(IOException fl)
             {
-
+                MessageBox.Show("Nie udało się zapisać wprowadzonych danych.KOmunikat błędu:"+fl.Message,"Błąd zapisu", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            catch (ArgumentNullException)
+            catch(Exception x)
             {
-
+                MessageBox.Show(x.Message);
             }
         }
 
@@ -144,7 +173,14 @@ namespace FitClub_GUI_
             newEat.ShowDialog();
 
             Jedzenia jedzenia = new Jedzenia(newEat.Nazwa,newEat.Kalorie,newEat.Białko,newEat.Tłuszcze,newEat.Weglowodany);
-            jescControler.Dodaj(jedzenia,1.00);
+            if(!string.IsNullOrEmpty(newEat.Nazwa))
+            {
+                jescControler.Dodaj(jedzenia, 1.00);
+            }
+
+            //można było korzystać z try catch ale to jest poniższy przypadek
+            // https://docs.microsoft.com/en-us/dotnet/standard/exceptions/best-practices-for-exceptions
+            // Check for error conditions in code if the event happens routinely and could be considered part of normal execution. When you check for common error conditions, less code is executed because you avoid exceptions.
             RefreshListJedzenie();
 
         }
